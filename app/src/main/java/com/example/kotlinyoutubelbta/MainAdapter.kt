@@ -3,16 +3,19 @@ package com.example.kotlinyoutubelbta
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
     //its like the table view delegate in swift
 
+    val videoTitles = listOf<String>("Video Title one", "video Title Two", "Video Title Three")
+
 
     //number of items
     override fun getItemCount(): Int {
         //same as number of items in table view in swift
-        return 3
+        return videoTitles.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -24,20 +27,25 @@ class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
 
         val cellForRow = layoutInflater.inflate(R.layout.video_row, parent, false)
 
-       // return  cellForRow
-
+       // return  cellForRow, but in a constructor  CustomViewHolder(cellForRow)
         return  CustomViewHolder(cellForRow)
 
     }
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        TODO("Not yet implemented")
+
+        //access the items in the cell(custom view)
+        //val videoTitle = fi
+
+        val videoTitlePosition  = videoTitles.get(position)
+        //holder?.view?.textview_video_title?.text = videoTitlePosition
+
     }
 
 
 }
 
-//The custome view Holder is like the Cell class in a collection view
-class CustomViewHolder(v: View): RecyclerView.ViewHolder(v) {
+//The custom view Holder is like the Cell class in a collection view
+class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
 
 }
