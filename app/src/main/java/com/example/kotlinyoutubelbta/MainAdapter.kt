@@ -4,19 +4,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.video_row.* // Here
 import kotlinx.android.synthetic.main.video_row.view.*
 
-class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
+
+//class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
+
+//modify Adapter to take in the homefeed
+
+class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolder>(){
     //its like the table view delegate in swift
 
-    val videoTitles = listOf<String>("Video Title one", "video Title Two", "Video Title Three")
+    val videoTitles = listOf<String>("Video Title one", "video Title Two", "Video Title Three", "JJ", "SS", "CC")
 
 
     //number of items
     override fun getItemCount(): Int {
         //same as number of items in table view in swift
-        return videoTitles.size
+//        return videoTitles.size
+
+        return homeFeed.videos.count()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -40,8 +46,10 @@ class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
 
         //access the items in the cell(custom view)
 
-        val videoTitlePosition  = videoTitles.get(position)
-        holder?.view?.textview_video_title?.text = videoTitlePosition
+        //val videoTitlePosition  = videoTitles.get(position)
+
+        val video = homeFeed.videos.get(position)
+        holder?.view?.textview_video_title?.text = video.name //the view here comes from the custom view
          //https://www.youtube.com/watch?v=jS0buQyfJfs
     }
 
