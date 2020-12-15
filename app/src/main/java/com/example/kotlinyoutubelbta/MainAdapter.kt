@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.video_row.view.*
 
 
@@ -52,7 +53,19 @@ class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolde
         holder?.view?.textview_video_title?.text = video.name //the view here comes from the custom view
          //https://www.youtube.com/watch?v=jS0buQyfJfs
 
-        holder?.view.textView_channel_name?.text = video.channel.name
+        holder?.view.textView_channel_name?.text = video.channel.name + " • " +  "20K Views\n4 days ago"
+         
+        
+        //loading image using Picasso
+        val thumbNailImageView = holder?.view?.imageViewnail_video_thumbnail
+
+        //Picasso.with(holder?.view?.context).load(video.imageURL).into(thumbNailImageView)
+
+        Picasso.with(holder?.view?.context).load(video.imageUrl).into(thumbNailImageView)
+
+        val channelProfile = holder?.view?.imageView_channel_profile
+        Picasso.with(holder?.view?.context).load(video.channel.profileImageUrl).into(channelProfile)
+        //https://www.youtube.com/watch?v=CGZsfpst8pU
 
 
     }
