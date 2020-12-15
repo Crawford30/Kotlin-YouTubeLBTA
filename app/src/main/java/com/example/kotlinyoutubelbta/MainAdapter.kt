@@ -3,8 +3,9 @@ package com.example.kotlinyoutubelbta
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.video_row.* // Here
+import kotlinx.android.synthetic.main.video_row.view.*
 
 class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
     //its like the table view delegate in swift
@@ -34,12 +35,14 @@ class MainAdapter : RecyclerView.Adapter<CustomViewHolder>(){
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
 
+        //https://stackoverflow.com/questions/33914258/kotlin-android-extensions-how-to-get-a-reference-to-a-view-in-a-layout-that-get
+        //https://stackoverflow.com/questions/34169562/unresolved-reference-kotlinx
+
         //access the items in the cell(custom view)
-        //val videoTitle = fi
 
         val videoTitlePosition  = videoTitles.get(position)
-        //holder?.view?.textview_video_title?.text = videoTitlePosition
-
+        holder?.view?.textview_video_title?.text = videoTitlePosition
+         //https://www.youtube.com/watch?v=jS0buQyfJfs
     }
 
 
