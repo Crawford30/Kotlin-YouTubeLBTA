@@ -68,6 +68,8 @@ class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolde
         Picasso.with(holder?.view?.context).load(video.channel.profileImageUrl).into(channelProfile)
         //https://www.youtube.com/watch?v=CGZsfpst8pU
 
+        holder?.video = video //video first video is from the CustomViewHolder
+
 
     }
 
@@ -75,14 +77,29 @@ class MainAdapter(val homeFeed: HomeFeed) : RecyclerView.Adapter<CustomViewHolde
 }
 
 //The custom view Holder is like the Cell class in a collection view
-class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+//modify the class to have the video object to be use to pass data
+//class CustomViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+
+class CustomViewHolder(val view: View, var video: Video? = null): RecyclerView.ViewHolder(view) {
 //=====adding on click ===
+
+    //=====companion object, reduce hard coding
+    companion object {
+        val VIDEO_TITLE_KEY = "VIDEO_TITLE"
+        val VIDEO_ID_KEY = "VIDEO_ID"
+    }
 
     //provide initializer
     init {
         view.setOnClickListener {
             //println("TEST")
             val intent  = Intent(view.context, CourseDetailActivity::class.java)
+
+            //pass data via intent
+            //intent.putExtra(VIDEO_TITLE_KEY, "COURSE TITLE OBJECTTOPASS")
+
+            intent.putExtra(VIDEO_TITLE_KEY, video?.name)
+            intent.putExtra(VIDEO_ID_KEY, video?.id)
 
             view.context.startActivity(intent)
         }
